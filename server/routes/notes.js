@@ -28,4 +28,32 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
+//ADD A NOTE
+router.post("/", async (req, res) => {
+	const note = {
+		title: req.body.title,
+		body: req.body.body,
+	};
+	if (
+		note.title === "" ||
+		note.body === "" ||
+		typeof note.title !== "string" ||
+		typeof note.body !== "string"
+	) {
+		return res
+			.status(400)
+			.json(
+				"Error: You must provide note object with a title and a body in string format!"
+			);
+	} else {
+		const newNote = new NoteModel(note);
+		try {
+			await newNote.save();
+			return res.status(200).json("New note added succesfully!");
+		} catch (err) {
+			return res.status(400).json({ error: err });
+		}
+	}
+});
+
 module.exports = router;
