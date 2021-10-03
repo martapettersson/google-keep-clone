@@ -70,4 +70,36 @@ router.delete("/:id", async (req, res) => {
 	}
 });
 
+//UPDATE A NOTE
+router.put("/:id", async (req, res) => {
+	const id = req.params.id;
+	const note = {
+		title: req.body.title,
+		body: req.body.body,
+	};
+
+	if (
+		note.title === "" ||
+		note.body === "" ||
+		typeof note.title !== "string" ||
+		typeof note.body !== "string"
+	) {
+		return res
+			.status(400)
+			.json(
+				"Error: You must provide note object with a title and a body in string format!"
+			);
+	} else {
+		try {
+			const updatedNote = await NoteModel.findByIdAndUpdate({ _id: id }, note);
+			if (!updatedNote) {
+				return res.status(404).json("Error: This note does not exist!");
+			}
+			return res.status(200).json("Note updated succesfully!");
+		} catch (err) {
+			return res.status(400).json({ error: err });
+		}
+	}
+});
+
 module.exports = router;
