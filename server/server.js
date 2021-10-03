@@ -20,6 +20,9 @@ connection.on("error", (err) => {
 	console.log(`Error connecting to MongoDB: ${err}`);
 });
 
+const notesRouter = require("./routes/notes");
+app.use("/api/notes", notesRouter);
+
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);
 });
