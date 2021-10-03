@@ -56,4 +56,18 @@ router.post("/", async (req, res) => {
 	}
 });
 
+//DELETE A NOTE
+router.delete("/:id", async (req, res) => {
+	const id = req.params.id;
+	try {
+		const note = await NoteModel.findOneAndDelete({ _id: id });
+		if (!note) {
+			return res.status(404).json("Error: This note does not exist!");
+		}
+		return res.status(200).json("Note deleted succesfully!");
+	} catch (err) {
+		return res.status(400).json({ error: err });
+	}
+});
+
 module.exports = router;
