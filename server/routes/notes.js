@@ -14,4 +14,18 @@ router.get("/", async (req, res) => {
 	}
 });
 
+//GET SINGLE NOTE
+router.get("/:id", async (req, res) => {
+	const id = req.params.id;
+	try {
+		const note = await NoteModel.findById(id);
+		if (!note) {
+			return res.status(404).json("Error: Note not found!");
+		}
+		return res.status(200).json(note);
+	} catch (err) {
+		return res.status(400).json({ error: err });
+	}
+});
+
 module.exports = router;
