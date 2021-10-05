@@ -15,6 +15,8 @@ export default function NotesPage() {
 			.then((data) => {
 				if (data.success) {
 					setNotes(data.data);
+				} else {
+					setNotes([])
 				}
 			});
 	};
@@ -31,7 +33,7 @@ export default function NotesPage() {
 					})}
 				</div>
 			) : (
-				<p>Notes Not Found</p>
+				<p>Loading Data</p>
 			)}
 		</div>
 	);
