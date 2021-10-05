@@ -2,16 +2,25 @@ import React, { useEffect, useState } from "react";
 import Note from "../components/Note";
 
 export default function NotesPage() {
-const [notes, setNotes] = useState(null);
-	useEffect(() => {
-		fetch("http://localhost:5000/api/notes/")
+	const [notes, setNotes] = useState(null);
+	const getNotes = () => {
+		const url = "http://localhost:5000/api/notes/";
+		fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
 			.then((res) => res.json())
 			.then((data) => {
-				if(data.success === false){
-					setNotes([])
+				if (data.success === false) {
+					setNotes([]);
 				}
-				setNotes(data.data)
+				setNotes(data.data);
 			});
+	};
+	useEffect(() => {
+		setNotes(getNotes());
 	}, []);
 	return (
 		<div>
