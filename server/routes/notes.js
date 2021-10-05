@@ -6,11 +6,13 @@ router.get("/", async (req, res) => {
 	try {
 		const notes = await NoteModel.find();
 		if (notes.length === 0 || !notes) {
-			return res.status(404).json("Error: Notes not found!");
+			return res
+				.status(404)
+				.json({ success: false, error: "Notes Not Found!" });
 		}
-		return res.status(200).json(notes);
+		return res.status(200).json({ success: true, data: notes });
 	} catch (err) {
-		return res.status(400).json({ error: err });
+		return res.status(400).json({ success: false, error: err });
 	}
 });
 
@@ -20,11 +22,11 @@ router.get("/:id", async (req, res) => {
 	try {
 		const note = await NoteModel.findById(id);
 		if (!note) {
-			return res.status(404).json("Error: Note not found!");
+			return res.status(404).json({ success: false, error: "Note Not Found!" });
 		}
-		return res.status(200).json(note);
+		return res.status(200).json({ success: true, data: note });
 	} catch (err) {
-		return res.status(400).json({ error: err });
+		return res.status(400).json({ success: false, error: err });
 	}
 });
 
@@ -40,16 +42,18 @@ router.post("/", async (req, res) => {
 		typeof note.title !== "string" ||
 		typeof note.body !== "string"
 	) {
-		return res
-			.status(400)
-			.json(
-				"Error: You must provide note object with a title and a body in string format!"
-			);
+		return res.status(400).json({
+			success: false,
+			error:
+				"You must provide note object with a title and a body in string format!",
+		});
 	} else {
 		const newNote = new NoteModel(note);
 		try {
 			await newNote.save();
-			return res.status(200).json("New note added succesfully!");
+			return res
+				.status(200)
+				.json({ success: true, statusMessage: "New note added succesfully!" });
 		} catch (err) {
 			return res.status(400).json({ error: err });
 		}
@@ -62,11 +66,15 @@ router.delete("/:id", async (req, res) => {
 	try {
 		const note = await NoteModel.findOneAndDelete({ _id: id });
 		if (!note) {
-			return res.status(404).json("Error: This note does not exist!");
+			return res
+				.status(404)
+				.json({ success: false, error: "Error: This note does not exist!" });
 		}
-		return res.status(200).json("Note deleted succesfully!");
+		return res
+			.status(200)
+			.json({ success: true, statusMessage: "Note deleted succesfully!" });
 	} catch (err) {
-		return res.status(400).json({ error: err });
+		return res.status(400).json({ success: false, error: err });
 	}
 });
 
@@ -84,20 +92,24 @@ router.put("/:id", async (req, res) => {
 		typeof note.title !== "string" ||
 		typeof note.body !== "string"
 	) {
-		return res
-			.status(400)
-			.json(
-				"Error: You must provide note object with a title and a body in string format!"
-			);
+		return res.status(400).json({
+			success: false,
+			error:
+				"You must provide note object with a title and a body in string format!",
+		});
 	} else {
 		try {
 			const updatedNote = await NoteModel.findByIdAndUpdate({ _id: id }, note);
 			if (!updatedNote) {
-				return res.status(404).json("Error: This note does not exist!");
+				return res
+					.status(404)
+					.json({ success: false, error: "Error: This note does not exist!" });
 			}
-			return res.status(200).json("Note updated succesfully!");
+			return res
+				.status(200)
+				.json({ success: true, statusMessage: "Note updated succesfully!" });
 		} catch (err) {
-			return res.status(400).json({ error: err });
+			return res.status(400).json({ success: false, error: err });
 		}
 	}
 });
