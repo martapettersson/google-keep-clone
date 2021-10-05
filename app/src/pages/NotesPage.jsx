@@ -13,14 +13,13 @@ export default function NotesPage() {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				if (data.success === false) {
-					setNotes([]);
+				if (data.success) {
+					setNotes(data.data);
 				}
-				setNotes(data.data);
 			});
 	};
 	useEffect(() => {
-		setNotes(getNotes());
+		getNotes();
 	}, []);
 	return (
 		<div>
@@ -28,11 +27,11 @@ export default function NotesPage() {
 			{notes ? (
 				<div>
 					{notes.map((note) => {
-						return <Note key={note.id} note={note} />;
+						return <Note key={note.id} note={note} notes= {notes} setNotes = {setNotes} />;
 					})}
 				</div>
 			) : (
-				<p>Loading data...</p>
+				<p>Notes Not Found</p>
 			)}
 		</div>
 	);
