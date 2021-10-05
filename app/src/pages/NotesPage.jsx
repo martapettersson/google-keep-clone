@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Note from "../components/Note";
 
 export default function NotesPage() {
-	const notes = [
-		{id: 1, title: "Title 1", body: "Body 1"}, 
-		{id: 2, title: "Title 2", body: "Body 2"}
-	];
-	// const notes = null;
+const [notes, setNotes] = useState(null);
+	useEffect(() => {
+		fetch("http://localhost:5000/api/notes/")
+			.then((res) => res.json())
+			.then((data) => {
+				if(data.success === false){
+					setNotes([])
+				}
+				setNotes(data.data)
+			});
+	}, []);
 	return (
 		<div>
 			<h1>Notes</h1>
