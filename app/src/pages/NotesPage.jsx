@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Note from "../components/Note";
+import CreateNote from "../components/CreateNote";
 
 export default function NotesPage() {
 	const [notes, setNotes] = useState(null);
+	
 	const getNotes = () => {
 		const url = "http://localhost:5000/api/notes/";
 		fetch(url, {
@@ -26,6 +28,7 @@ export default function NotesPage() {
 	return (
 		<div>
 			<h1>Notes</h1>
+			<CreateNote notes= {notes} setNotes = {setNotes}/>
 			{notes ? (
 				<div>
 					{notes.map((note) => {
