@@ -51,13 +51,11 @@ router.post("/", async (req, res) => {
 		const newNote = new NoteModel(note);
 		try {
 			await newNote.save();
-			return res
-				.status(200)
-				.json({
-					success: true,
-					statusMessage: "New note added succesfully!",
-					data: newNote,
-				});
+			return res.status(200).json({
+				success: true,
+				statusMessage: "New note added succesfully!",
+				data: newNote,
+			});
 		} catch (err) {
 			return res.status(400).json({ error: err });
 		}
@@ -103,7 +101,9 @@ router.put("/:id", async (req, res) => {
 		});
 	} else {
 		try {
-			const updatedNote = await NoteModel.findByIdAndUpdate({ _id: id }, note);
+			const updatedNote = await NoteModel.findByIdAndUpdate(id, note, {
+				new: true,
+			});
 			if (!updatedNote) {
 				return res
 					.status(404)
