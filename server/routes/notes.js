@@ -53,7 +53,11 @@ router.post("/", async (req, res) => {
 			await newNote.save();
 			return res
 				.status(200)
-				.json({ success: true, statusMessage: "New note added succesfully!" });
+				.json({
+					success: true,
+					statusMessage: "New note added succesfully!",
+					data: newNote,
+				});
 		} catch (err) {
 			return res.status(400).json({ error: err });
 		}
@@ -105,9 +109,11 @@ router.put("/:id", async (req, res) => {
 					.status(404)
 					.json({ success: false, error: "Error: This note does not exist!" });
 			}
-			return res
-				.status(200)
-				.json({ success: true, statusMessage: "Note updated succesfully!" });
+			return res.status(200).json({
+				success: true,
+				statusMessage: "Note updated succesfully!",
+				data: updatedNote,
+			});
 		} catch (err) {
 			return res.status(400).json({ success: false, error: err });
 		}
