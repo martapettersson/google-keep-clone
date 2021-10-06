@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Note({ note, notes, setNotes }) {
     const noteId = note._id
@@ -21,6 +22,7 @@ export default function Note({ note, notes, setNotes }) {
             <h2>{note.title}</h2>
             <p>{note.body}</p>
             <button onClick={deleteNote}>Delete</button>
+			<button><Link to={`/notes/${noteId}`}>Edit</Link></button>
             <hr />
         </div>
 	);
