@@ -34,6 +34,7 @@ function App() {
 		<div>
 			<UserContext.Provider value={userContextValue}>
 				<Switch>
+					<Route path="/notes/:id" component={NotesPage} />
 					<Route path="/notes" component={NotesPage} />
 					<Route path="/" component={HomePage} />
 				</Switch>
