@@ -42,7 +42,6 @@ export default function NotesPage(props) {
 			)
 		}
 	} else {
-		console.log(notes)
 		return (
 			<div>
 				<h1>Notes</h1>
