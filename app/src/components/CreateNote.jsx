@@ -10,9 +10,25 @@ export default function CreateNote({ notes, setNotes }) {
         console.log(formData);
 	};
 
+    const createNote = (e) => {
+        e.preventDefault();
+        const url = `http://localhost:5000/api/notes/`;
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((res) => res.json())
+        .then((data) => {
+            setNotes([...notes, data.data]);
+            setFormData({});
+        });
+    }
+
 	return (
         <div>
-            <form action="post">
+            <form onSubmit={createNote} action="post">
                 <h3>Title</h3>
                 <input onChange={handleOnChange} type="text" name="title" id="title" value={formData["title"] || ""} />
                 <br />
