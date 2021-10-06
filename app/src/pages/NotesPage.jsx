@@ -1,30 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "../context/UserContext";
 import Note from "../components/Note";
 import CreateNote from "../components/CreateNote";
 
 export default function NotesPage() {
-	const [notes, setNotes] = useState(null);
-	
-	const getNotes = () => {
-		const url = "http://localhost:5000/api/notes/";
-		fetch(url, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.success) {
-					setNotes(data.data);
-				} else {
-					setNotes([])
-				}
-			});
-	};
+	const {
+		notes, setNotes , getNotes
+	} = useContext(UserContext);
+
 	useEffect(() => {
 		getNotes();
 	}, []);
+	
 	return (
 		<div>
 			<h1>Notes</h1>
