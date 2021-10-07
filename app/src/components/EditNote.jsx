@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import MDEditor from '@uiw/react-md-editor';
 
 export default function EditNote({ id, note, notes, setNotes }) {
-    const [formData, setFormData] = useState(note);
+    const [formData, setFormData] = useState(note.markdown);
     const history = useHistory();
     const noteId = id;
 
-    const handleOnChange = (e) => {
-		const inputName = e.target.name;
-		const inputValue = e.target.value;
-		setFormData({ ...formData, [inputName]: inputValue });
-	};
-
     const validateForm = () => {
-        if (!formData.title || !formData.body){
+        if (!formData){
             return false;
         } else {
             return true;
@@ -26,7 +21,7 @@ export default function EditNote({ id, note, notes, setNotes }) {
             const url = `http://localhost:5000/api/notes/${noteId}`;
             fetch(url, {
                 method: "PUT",
-                body: JSON.stringify(formData),
+                body: JSON.stringify({markdown: formData}),
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -40,22 +35,17 @@ export default function EditNote({ id, note, notes, setNotes }) {
                 history.push(`/notes`);
             });
         } else {
-            alert ("Please enter a title and body.");
+            alert ("Please enter data in form.");
         }
     }
 
 	return (
         <div>
+            <MDEditor value={formData} onChange={setFormData} />
             <form onSubmit={updateNote} action="post">
-                <h3>Title</h3>
-                <input onChange={handleOnChange} type="text" name="title" id="title" value={formData["title"] || note.title} />
-                <br />
-                <h3>Body</h3>
-                <textarea onChange={handleOnChange} name="body" id="body" cols="30" rows="10" value={formData["body"] || note.body}></textarea>
-                <br />
-                <input type="submit" value="Update" />
+                <input type="hidden" name="markdown" id="markdown" value={formData} />
+                <input type="submit" value="Update"/>
             </form>
-            <hr />
         </div>
 	);
 }
