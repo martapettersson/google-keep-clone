@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import NotesPage from "./pages/NotesPage";
+import Navbar from "./components/Navbar";
 
 function App() {
 	const [notes, setNotes] = useState(null);
@@ -32,13 +33,16 @@ function App() {
 	};
 	return (
 		<div>
-			<UserContext.Provider value={userContextValue}>
-				<Switch>
-					<Route path="/notes/:id" component={NotesPage} />
-					<Route path="/notes" component={NotesPage} />
-					<Route path="/" component={HomePage} />
-				</Switch>
-			</UserContext.Provider>
+			<Navbar />
+			<div className="container">
+				<UserContext.Provider value={userContextValue}>
+					<Switch>
+						<Route path="/notes/:id" component={NotesPage} />
+						<Route path="/notes" component={NotesPage} />
+						<Route path="/" component={HomePage} />
+					</Switch>
+				</UserContext.Provider>
+			</div>
 		</div>
 	);
 }
