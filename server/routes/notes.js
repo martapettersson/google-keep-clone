@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
 	if (note.markdown === "" || typeof note.markdown !== "string") {
 		return res.status(400).json({
 			success: false,
-			error: "You must provide note object with a markdown string!",
+			error: "You must provide note object with a string!",
 		});
 	} else {
 		const newNote = new NoteModel(note);
@@ -76,27 +76,20 @@ router.delete("/:id", async (req, res) => {
 //UPDATE A NOTE
 router.put("/:id", async (req, res) => {
 	const id = req.params.id;
-	const note = {
-		title: req.body.title,
-		body: req.body.body,
+	const userInput = {
+		markdown: req.body.markdown,
 	};
 
-	if (
-		note.title === "" ||
-		note.body === "" ||
-		typeof note.title !== "string" ||
-		typeof note.body !== "string"
-	) {
+	if (userInput.markdown === "" || typeof userInput.markdown !== "string") {
 		return res.status(400).json({
 			success: false,
-			error:
-				"You must provide note object with a title and a body in string format!",
+			error: "You must provide note object with a string!",
 		});
 	} else {
 		try {
-			const updatedNote = await NoteModel.findByIdAndUpdate(id, note, {
-				new: true,
-			});
+			let note = await NoteModel.findById(id);
+			note.markdown = userInput.markdown;
+			const updatedNote = await note.save({ new: true });
 			if (!updatedNote) {
 				return res
 					.status(404)
