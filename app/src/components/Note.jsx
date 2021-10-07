@@ -1,4 +1,5 @@
 import React from "react";
+import MDEditor from '@uiw/react-md-editor';
 import { Link } from "react-router-dom";
 
 export default function Note({ note, notes, setNotes }) {
@@ -32,9 +33,8 @@ export default function Note({ note, notes, setNotes }) {
     }
 	return (
         <div>
-            <h2>{note.title}</h2>
 			<p>{lastUpdatedAt}</p>
-            <p>{note.body}</p>
+			<MDEditor.Markdown source={note.sanitizedHtml} />
             <button onClick={deleteNote}>Delete</button>
 			<button><Link to={`/notes/${noteId}`}>Edit</Link></button>
             <hr />
