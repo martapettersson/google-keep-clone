@@ -12,10 +12,11 @@ const NoteSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-NoteSchema.pre("validate", function () {
+NoteSchema.pre("validate", function (next) {
 	if (this.markdown) {
 		this.sanitizedHtml = dompurify.sanitize(marked(this.markdown));
 	}
+	next();
 });
 
 module.exports = mongoose.model("Note", NoteSchema);
