@@ -33,11 +33,12 @@ export default function CreateNote({ notes, setNotes }) {
     }
 
 	return (
-        <div>
+        <div className="md-editor">
+            <h2 className="header">Create New Note</h2>
             <MDEditor value={formData} onChange={setFormData} />
             <form onSubmit={createNote} action="post">
                 <input type="hidden" name="markdown" id="markdown" value={formData} />
-                <input type="submit" value="Create"/>
+                <input className="btn" type="submit" value="Create"/>
             </form>
         </div>
 	);

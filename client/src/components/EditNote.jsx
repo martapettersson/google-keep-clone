@@ -40,11 +40,12 @@ export default function EditNote({ id, note, notes, setNotes }) {
     }
 
 	return (
-        <div>
+        <div className="md-editor">
+            <h2 className="header">Edit Note</h2>
             <MDEditor value={formData} onChange={setFormData} />
             <form onSubmit={updateNote} action="post">
                 <input type="hidden" name="markdown" id="markdown" value={formData} />
-                <input type="submit" value="Update"/>
+                <input className="btn" type="submit" value="Update"/>
             </form>
         </div>
 	);

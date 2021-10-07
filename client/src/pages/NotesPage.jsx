@@ -20,10 +20,9 @@ export default function NotesPage(props) {
 		if (note) {
 			return (
 				<div>
-					<h1>Notes Edit</h1>
 					<EditNote id={id} note={note} notes= {notes} setNotes = {setNotes}/>
 					{notes ? (
-						<div>
+						<div className="notes-container">
 							{notes.map((note) => {
 								return <Note key={note._id} note={note} notes= {notes} setNotes = {setNotes} />;
 							})}
@@ -43,11 +42,10 @@ export default function NotesPage(props) {
 		}
 	} else {
 		return (
-			<div>
-				<h1>Notes</h1>
+			<>
 				<CreateNote notes= {notes} setNotes = {setNotes}/>
 				{notes ? (
-					<div>
+					<div className="notes-container">
 						{notes.map((note) => {
 							return <Note key={note._id} note={note} notes= {notes} setNotes = {setNotes} />;
 						})}
@@ -55,7 +53,7 @@ export default function NotesPage(props) {
 				) : (
 					<p>Loading Data</p>
 				)}
-			</div>
+			</>
 		);
 	}
 }

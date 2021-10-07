@@ -63,4 +63,55 @@ html {
 /************ MAIN CONTAINER ************/
 .container {
 	margin: 24px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-column-gap: 24px;
+}
+
+.notes-container {
+	display: grid;
+	grid-column-gap: 24px;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.note-container {
+	border: 0.5px solid var(--lightgrey);
+	border-radius: 12px;
+	padding: 24px;
+	margin-bottom: 24px;
+	color: var(--lightgrey);
+	overflow: scroll;
+	height: 200px;
+}
+
+.md-editor {
+	border: 0.5px solid var(--lightgrey);
+	border-radius: 12px;
+	padding: 24px;
+	margin-bottom: 24px;
+	color: var(--lightgrey);
+	height: 50vh;
+	overflow: scroll;
+}
+
+.btn {
+	background-color: var(--purple);
+	border-radius: 12px;
+	border: none;
+	outline: none;
+	padding: 10px;
+	margin-top: 12px;
+	margin-right: 12px;
+	color: var(--lightgrey);
+	display: inline-block;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+}
+.btn:hover {
+	opacity: 0.5;
+}
+
+.header {
+	margin-bottom: 8px;
 }

@@ -32,12 +32,11 @@ export default function Note({ note, notes, setNotes }) {
 		});
     }
 	return (
-        <div>
+        <div className="note-container">
 			<p>{lastUpdatedAt}</p>
 			<MDEditor.Markdown source={note.sanitizedHtml} />
-            <button onClick={deleteNote}>Delete</button>
-			<button><Link to={`/notes/${noteId}`}>Edit</Link></button>
-            <hr />
+            <button className="btn" onClick={deleteNote}>Delete</button>
+			<Link className="btn" to={`/notes/${noteId}`}>Edit</Link>
         </div>
 	);
 }
