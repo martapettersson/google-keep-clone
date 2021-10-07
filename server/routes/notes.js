@@ -33,19 +33,12 @@ router.get("/:id", async (req, res) => {
 //ADD A NOTE
 router.post("/", async (req, res) => {
 	const note = {
-		title: req.body.title,
-		body: req.body.body,
+		markdown: req.body.markdown,
 	};
-	if (
-		note.title === "" ||
-		note.body === "" ||
-		typeof note.title !== "string" ||
-		typeof note.body !== "string"
-	) {
+	if (note.markdown === "" || typeof note.markdown !== "string") {
 		return res.status(400).json({
 			success: false,
-			error:
-				"You must provide note object with a title and a body in string format!",
+			error: "You must provide note object with a markdown string!",
 		});
 	} else {
 		const newNote = new NoteModel(note);
