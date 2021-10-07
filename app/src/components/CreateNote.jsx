@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import MDEditor from '@uiw/react-md-editor';
 
 export default function CreateNote({ notes, setNotes }) {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState("");
 
-    const handleOnChange = (e) => {
-		const inputName = e.target.name;
-		const inputValue = e.target.value;
-		setFormData({ ...formData, [inputName]: inputValue });
-	};
+    // const handleOnChange = (e) => {
+	// 	const inputName = e.target.name;
+	// 	const inputValue = e.target.value;
+	// 	setFormData({ ...formData, [inputName]: inputValue });
+	// };
+    console.log(formData)
 
     const validateForm = () => {
-        if (!formData.title || !formData.body){
+        if (!formData){
             return false;
         } else {
             return true;
@@ -33,22 +36,14 @@ export default function CreateNote({ notes, setNotes }) {
                 setFormData({});
             });
         } else {
-            alert ("Please enter a title and body.");
+            alert ("Please enter data in form.");
         }
     }
 
 	return (
-        <div>
-            <form onSubmit={createNote} action="post">
-                <h3>Title</h3>
-                <input onChange={handleOnChange} type="text" name="title" id="title" value={formData["title"] || ""} />
-                <br />
-                <h3>Body</h3>
-                <textarea onChange={handleOnChange} name="body" id="body" cols="30" rows="10" value={formData["body"] || ""}></textarea>
-                <br />
-                <input type="submit" value="Create" />
-            </form>
-            <hr />
+        <div>hello
+            {/* <MDEditor value={formData} onChange={setFormData} />
+            <MDEditor.Markdown source={formData} /> */}
         </div>
 	);
 }
