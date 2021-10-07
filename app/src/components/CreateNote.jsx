@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import MDEditor from '@uiw/react-md-editor';
 
 export default function CreateNote({ notes, setNotes }) {
     const [formData, setFormData] = useState("");
-
-    // const handleOnChange = (e) => {
-	// 	const inputName = e.target.name;
-	// 	const inputValue = e.target.value;
-	// 	setFormData({ ...formData, [inputName]: inputValue });
-	// };
-    console.log(formData)
 
     const validateForm = () => {
         if (!formData){
@@ -26,14 +18,14 @@ export default function CreateNote({ notes, setNotes }) {
             const url = `http://localhost:5000/api/notes/`;
             fetch(url, {
                 method: "POST",
-                body: JSON.stringify(formData),
+                body: JSON.stringify({markdown: formData}),
                 headers: {
                     "Content-Type": "application/json",
                 },
             }).then((res) => res.json())
             .then((data) => {
                 setNotes([...notes, data.data]);
-                setFormData({});
+                setFormData("");
             });
         } else {
             alert ("Please enter data in form.");
@@ -41,9 +33,12 @@ export default function CreateNote({ notes, setNotes }) {
     }
 
 	return (
-        <div>hello
-            {/* <MDEditor value={formData} onChange={setFormData} />
-            <MDEditor.Markdown source={formData} /> */}
+        <div>
+            <MDEditor value={formData} onChange={setFormData} />
+            <form onSubmit={createNote} action="post">
+                <input type="hidden" name="markdown" id="markdown" value={formData} />
+                <input type="submit" value="Create"/>
+            </form>
         </div>
 	);
 }
