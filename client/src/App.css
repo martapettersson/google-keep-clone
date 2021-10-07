@@ -46,6 +46,7 @@ html {
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
+	font-size: 18px;
 }
 
 .navbar li a:hover {
@@ -60,7 +61,7 @@ html {
 	opacity: 0.75;
 }
 
-/************ MAIN CONTAINER ************/
+/************ CONTAINERS ************/
 .container {
 	margin: 24px;
 	display: grid;
@@ -94,6 +95,7 @@ html {
 	overflow: scroll;
 }
 
+/************ BUTTON STYLES ************/
 .btn {
 	background-color: var(--purple);
 	border-radius: 12px;
@@ -102,7 +104,7 @@ html {
 	padding: 10px;
 	margin-top: 12px;
 	margin-right: 12px;
-	color: var(--lightgrey);
+	color: var(--white);
 	display: inline-block;
 	font-size: 16px;
 	text-align: center;
@@ -112,6 +114,7 @@ html {
 	opacity: 0.5;
 }
 
+/************ HEADER STYLES ************/
 .header {
 	margin-bottom: 8px;
 }
