@@ -11,8 +11,11 @@ export default function Note({ note, notes, setNotes }) {
 		const month = dateObj.getUTCMonth() + 1;
 		const day = dateObj.getUTCDate();
 		const hour = dateObj.getHours();
-		const minutes = dateObj.getMinutes();
-		return `${year}/${month}/${day} - ${hour}:${minutes}`;
+		let minutes = dateObj.getMinutes().toString();
+		if (minutes.length === 1) {
+			minutes =`0${minutes}`;
+		}
+		return `${year}/${month}/${day} ${hour}:${minutes}`;
 	}
 
 	const lastUpdatedAt = getDate(note.updatedAt);
@@ -33,7 +36,7 @@ export default function Note({ note, notes, setNotes }) {
     }
 	return (
         <div className="note-container">
-			<p>{lastUpdatedAt}</p>
+			<strong>Last Updated: {lastUpdatedAt}</strong>
 			<MDEditor.Markdown source={note.sanitizedHtml} />
             <button className="btn" onClick={deleteNote}>Delete</button>
 			<Link className="btn" to={`/notes/${noteId}`}>Edit</Link>
