@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import MDEditor from '@uiw/react-md-editor';
 
 export default function EditNote({ id, note, notes, setNotes }) {
@@ -46,6 +46,7 @@ export default function EditNote({ id, note, notes, setNotes }) {
             <form onSubmit={updateNote} action="post">
                 <input type="hidden" name="markdown" id="markdown" value={formData} />
                 <input className="btn" type="submit" value="Update"/>
+                <Link to="/notes" className="btn">Cancel</Link>
             </form>
         </div>
 	);
