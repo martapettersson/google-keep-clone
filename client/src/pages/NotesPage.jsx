@@ -21,15 +21,6 @@ export default function NotesPage(props) {
 			return (
 				<div>
 					<EditNote id={id} note={note} notes= {notes} setNotes = {setNotes}/>
-					{notes ? (
-						<div className="notes-container">
-							{notes.map((note) => {
-								return <Note key={note._id} note={note} notes= {notes} setNotes = {setNotes} />;
-							})}
-						</div>
-					) : (
-						<p>Loading Data</p>
-					)}
 				</div>
 			);
 		} else {
