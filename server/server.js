@@ -24,7 +24,7 @@ const notesRouter = require("./routes/notes");
 app.use("/api/notes", notesRouter);
 
 const userRouter = require("./routes/user");
-app.use("/user", userRouter);
+app.use("/api/user", userRouter);
 
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);
