@@ -6,8 +6,8 @@ const User = require("../models/UserModel");
 const secretToken = process.env.SECRET_TOKEN;
 const salt = parseInt(process.env.SALT);
 
-const generateToken = (user) => {
-	return jwt.sign({ data: user }, secretToken);
+const generateToken = (userId) => {
+	return jwt.sign({ data: userId }, secretToken, { expiresIn: "60m" });
 };
 
 //GET ALL USERS
@@ -18,27 +18,27 @@ router.get("/", (req, res) => {
 });
 
 //CREATE USER
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
 	const { displayName, email, fullName, password } = req.body;
 
 	const userExists = await User.exists({ email });
 	if (userExists)
 		return res
 			.status(400)
-			.json({ success: false, error: "user already exists" });
+			.json({ success: false, error: "User already exists" });
 
 	bcrypt.hash(password, salt, (error, hash) => {
 		if (error) return res.status(500).json(error);
-		const user = new User({
+		const newUser = new User({
 			displayName,
 			email,
 			fullName,
 			password: hash,
 		});
-		user
+		newUser
 			.save()
-			.then((data) => {
-				res.status(201).json({ token: generateToken(data._id) });
+			.then((user) => {
+				res.status(201).json({ token: generateToken(user._id) });
 			})
 			.catch((err) => {
 				res.status(400).json({ success: false, error: err });
@@ -52,14 +52,18 @@ router.post("/login", async (req, res) => {
 		const user = await User.findOne({ email }).exec();
 		if (!user) {
 			return res
-				.status(400)
-				.json({ success: false, error: "Can not find user" });
+				.status(403)
+				.json({ success: false, error: "Wrong email or password" });
 		}
 		bcrypt.compare(password, user.password, (err, match) => {
 			if (err) return res.status(500).json({ success: false, error: err });
-			else if (match)
-				return res.status(200).json({ token: generateToken(user._id) });
-			else
+			else if (match) {
+				const token = generateToken(user._id);
+				return res
+					.status(200)
+					.header("auth-token", token)
+					.json({ success: true, token });
+			} else
 				return res
 					.status(403)
 					.json({ success: false, error: "Wrong email or password" });
