@@ -1,17 +1,39 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function LoginForm() {
 	const [formFields, setFormFields] = useState(null);
+	const history = useHistory();
 
 	const handleChange = (value, fieldId) => {
 		const payload = { ...formFields };
 		payload[fieldId] = value;
 		setFormFields(payload);
 	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const url = "/api/users/login";
+		const payload = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(formFields),
+		};
+		const response = await fetch(url, payload);
+		if (!response.ok) {
+			throw new Error("Something went wrong!");
+		}
+		const responseData = await response.json();
+		localStorage.setItem("tkn", responseData.token);
+		history.push(`/notes`);
+	};
+
 	return (
 		<div>
 			<h2>Login</h2>
-			<form className="form">
+			<form onSubmit={handleSubmit} className="form">
 				<label htmlFor="email">Email</label>
 				<input
 					onChange={(e) => handleChange(e.target.value, e.target.id)}
