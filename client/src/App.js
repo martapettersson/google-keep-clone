@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { UserContext } from "./context/UserContext";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
 import NotesPage from "./pages/NotesPage";
 import Navbar from "./components/Navbar";
 
@@ -39,7 +39,7 @@ function App() {
 					<Switch>
 						<Route path="/notes/:id" component={NotesPage} />
 						<Route path="/notes" component={NotesPage} />
-						<Route path="/" component={HomePage} />
+						<Route path="/" component={LandingPage} />
 					</Switch>
 				</UserContext.Provider>
 			</div>
