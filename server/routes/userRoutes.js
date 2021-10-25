@@ -48,9 +48,7 @@ router.post("/signup", async (req, res) => {
 		newUser
 			.save()
 			.then((user) => {
-				console.log(user);
 				const token = generateToken(user._id);
-				console.log(token);
 				res.status(201).json({ success: true, token });
 			})
 			.catch((err) => {
