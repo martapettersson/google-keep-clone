@@ -1,9 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function SignUpForm() {
 	const [formFields, setFormFields] = useState(null);
-
 	const history = useHistory();
 
 	const handleChange = (value, fieldId) => {
@@ -11,6 +10,7 @@ export default function SignUpForm() {
 		payload[fieldId] = value;
 		setFormFields(payload);
 	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const url = "/api/users/signup";
