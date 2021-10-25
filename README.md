@@ -1,17 +1,21 @@
 # Google Keep Clone
 
-***This is a school assignment for Backend 3 at Nackademin, Stockholm.***
+**_School assignment for Backend 3 at Nackademin, Stockholm._**
 
-## Client
-**To start up:**
+This is a fullstack application using MERN-stack.
 
+---
+
+### Start up client
+
+```
 cd client
-
 npm start
+```
 
-## Server
-**To start up:**
+### Start up server
 
+```
 cd server
-
 npm run devStart
+```
