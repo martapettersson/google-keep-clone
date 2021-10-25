@@ -1,7 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Navbar() {
+	const history = useHistory();
+	const { user, setUser } = useContext(UserContext);
+	const handleLogout = () => {
+		localStorage.removeItem("tkn");
+		setUser(null);
+		history.push("/");
+	};
+
 	return (
 		<ul className="navbar">
 			<li>
@@ -11,6 +20,9 @@ export default function Navbar() {
 			</li>
 			<li>
 				<Link to={`/notes/`}>Notes</Link>
+			</li>
+			<li>
+				<p onClick={handleLogout}>Logout</p>
 			</li>
 		</ul>
 	);
