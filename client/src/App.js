@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UserContext } from "./context/UserContext";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -7,43 +7,53 @@ import NotesPage from "./pages/NotesPage";
 import Navbar from "./components/Navbar";
 
 function App() {
-	const [notes, setNotes] = useState(null);
+	const [user, setUser] = useState(null);
 
-	const getNotes = () => {
-		const url = "http://localhost:5000/api/notes/";
-		fetch(url, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.success) {
-					setNotes(data.data);
-				} else {
-					setNotes([]);
+	useEffect(() => {
+		const fetchUser = async () => {
+			if (localStorage.getItem("tkn")) {
+				const token = localStorage.getItem("tkn");
+				const url = "/api/users/getMe";
+				const payload = {
+					headers: {
+						"Content-Type": "application/json",
+						authorization: `Bearer ${token}`,
+					},
+				};
+
+				const response = await fetch(url, payload);
+
+				if (!response.ok) {
+					throw new Error("Something went wrong!");
 				}
-			});
-	};
+
+				const responseData = await response.json();
+				setUser(responseData.data);
+			}
+		};
+		fetchUser().catch((error) => {
+			console.log(error);
+		});
+	}, []);
+
 	const userContextValue = {
-		notes,
-		setNotes,
-		getNotes,
+		user,
+		setUser,
 	};
+
 	return (
-		<div>
-			<Navbar />
-			<div className="container">
-				<UserContext.Provider value={userContextValue}>
+		<main>
+			<UserContext.Provider value={userContextValue}>
+				<Navbar />
+				<div className="container">
 					<Switch>
 						<Route path="/notes/:id" component={NotesPage} />
 						<Route path="/notes" component={NotesPage} />
 						<Route path="/" component={LandingPage} />
 					</Switch>
-				</UserContext.Provider>
-			</div>
-		</div>
+				</div>
+			</UserContext.Provider>
+		</main>
 	);
 }
 
