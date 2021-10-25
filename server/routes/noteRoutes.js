@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const NoteModel = require("../models/NoteModel");
-const verifyToken = require("./verifyToken");
+const verify = require("./verifyToken");
 
 //GET ALL NOTES
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", verify, async (req, res) => {
 	try {
 		const notes = await NoteModel.find();
 		if (notes.length === 0 || !notes) {
