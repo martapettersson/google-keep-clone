@@ -14,7 +14,7 @@ export default function LandingPage() {
 	};
 	return (
 		<div>
-			<h2>Welcome to Google Keep Clone!</h2>
+			<h1>Welcome to Google Keep Clone!</h1>
 			<br />
 			{formType === "login" ? (
 				<div>

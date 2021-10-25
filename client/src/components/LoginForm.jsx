@@ -10,7 +10,7 @@ export default function LoginForm() {
 	};
 	return (
 		<div>
-			<h3>Login</h3>
+			<h2>Login</h2>
 			<form className="form">
 				<label htmlFor="email">Email</label>
 				<input
@@ -26,6 +26,7 @@ export default function LoginForm() {
 					type="password"
 					autoComplete="off"
 				/>
+				<input type="submit" className="btn" value="Login" />
 			</form>
 		</div>
 	);

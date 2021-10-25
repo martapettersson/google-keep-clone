@@ -10,7 +10,7 @@ export default function SignUpForm() {
 	};
 	return (
 		<div>
-			<h3>Sign Up</h3>
+			<h2>Sign Up</h2>
 			<form className="form">
 				<label htmlFor="fullName">Full Name</label>
 				<input
@@ -40,6 +40,7 @@ export default function SignUpForm() {
 					type="password"
 					autoComplete="off"
 				/>
+				<input type="submit" className="btn" value="Sign Up" />
 			</form>
 		</div>
 	);
