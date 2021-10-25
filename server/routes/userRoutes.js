@@ -21,9 +21,9 @@ router.get("/", (req, res) => {
 
 //GET SPECIFIC USER
 // ONLY DEVELOPMENT
-router.get("/getMe", verify, async (req, res) => {
+router.get("/getMe", verify, (req, res) => {
 	User.findOne({ _id: req.user.id })
-		.then((users) => res.status(200).json({ success: true, data: users }))
+		.then((user) => res.status(200).json({ success: true, data: user }))
 		.catch((err) => res.status(400).json({ success: false, error: err }));
 });
 
