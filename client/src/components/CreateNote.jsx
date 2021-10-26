@@ -33,7 +33,7 @@ export default function CreateNote({ notes, setNotes }) {
 			throw new Error("Something went wrong!");
 		}
 		const responseData = await response.json();
-		setNotes([...notes, responseData.data]);
+		setNotes(!notes ? [responseData.data] : [...notes, responseData.data]);
 		setFormData("");
 	};
 
