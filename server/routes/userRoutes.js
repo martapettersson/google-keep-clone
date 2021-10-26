@@ -70,7 +70,8 @@ router.post("/login", async (req, res) => {
 			if (err) return res.status(500).json({ success: false, error: err });
 			else if (match) {
 				const token = generateToken(user._id);
-				return res.status(200).json({ success: true, token });
+				user.password = undefined;
+				return res.status(200).json({ success: true, token, user });
 			} else
 				return res
 					.status(403)
