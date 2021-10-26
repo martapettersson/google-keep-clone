@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 export default function LoginForm() {
 	const [formFields, setFormFields] = useState(null);
+	const { setUser } = useContext(UserContext);
 	const history = useHistory();
 
 	const handleChange = (value, fieldId) => {
@@ -27,6 +29,7 @@ export default function LoginForm() {
 		}
 		const responseData = await response.json();
 		localStorage.setItem("tkn", responseData.token);
+		setUser(responseData.user);
 		history.push(`/notes`);
 	};
 
