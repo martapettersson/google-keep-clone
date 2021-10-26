@@ -65,7 +65,7 @@ export default function NotesPage(props) {
 						})}
 					</div>
 				) : (
-					<p>Loading Data</p>
+					<p>No notes created yet!</p>
 				)}
 			</>
 		);
