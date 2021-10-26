@@ -33,7 +33,7 @@ export default function NotesPage(props) {
 				console.log(error);
 			});
 		}
-	}, []);
+	}, [user]);
 
 	if (!user) {
 		return (
