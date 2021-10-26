@@ -1,36 +1,36 @@
 {
-	"name": "server",
-	"version": "1.0.0",
-	"description": "",
-	"main": "server.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"devStart": "nodemon server.js",
-		"lint": "eslint .",
-		"lint-fix": "eslint --fix ."
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"bcrypt": "^5.0.1",
-		"cors": "^2.8.5",
-		"dompurify": "^2.3.3",
-		"dotenv": "^10.0.0",
-		"express": "^4.17.1",
-		"jsdom": "^17.0.0",
-		"jsonwebtoken": "^8.5.1",
-		"marked": "^3.0.6",
-		"mongoose": "^6.0.8"
-	},
-	"devDependencies": {
-		"eslint": "^7.32.0",
-		"eslint-config-airbnb-base": "^14.2.1",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-import": "^2.25.2",
-		"eslint-plugin-prettier": "^4.0.0",
-		"jest": "^27.3.1",
-		"nodemon": "^2.0.13",
-		"prettier": "^2.4.1"
-	}
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "devStart": "nodemon server.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dompurify": "^2.3.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsdom": "^17.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "marked": "^3.0.6",
+    "mongoose": "^6.0.8"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
+  }
 }
