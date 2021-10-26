@@ -11,7 +11,6 @@ export default function Navbar() {
 		setUser(null);
 		history.push("/");
 	};
-	console.log(user);
 
 	return (
 		<ul className="navbar">
@@ -23,10 +22,12 @@ export default function Navbar() {
 			{user && (
 				<>
 					<li>
-						<Link to={`/notes/`}>Notes</Link>
+						<Link to="/notes">Notes</Link>
 					</li>
 					<li>
-						<p onClick={handleLogout}>Logout</p>
+						<Link to="/" onClick={handleLogout}>
+							Logout
+						</Link>
 					</li>
 				</>
 			)}
