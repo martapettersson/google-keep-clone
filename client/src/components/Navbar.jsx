@@ -15,7 +15,7 @@ export default function Navbar() {
 	return (
 		<ul className="navbar">
 			<li>
-				<Link to={`/`}>
+				<Link to={!user ? "/" : "/notes"}>
 					<img className="menu-logo" src="/logo.png" alt="Note Logo" />
 				</Link>
 			</li>
