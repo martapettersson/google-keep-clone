@@ -1,12 +1,8 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const { generateToken } = require("../utils/generateToken");
 const User = require("../models/UserModel");
 
-const secretToken = process.env.SECRET_TOKEN;
 const salt = parseInt(process.env.SALT, 10);
-
-const generateToken = (userId) =>
-  jwt.sign({ id: userId }, secretToken, { expiresIn: "60m" });
 
 exports.getUser = (req, res) => {
   User.findOne({ _id: req.user.id })
