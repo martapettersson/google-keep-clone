@@ -7,7 +7,7 @@ import SignUpForm from "../components/SignUpForm";
 
 export default function LandingPage() {
 	const [formType, setFormType] = useState("signup");
-	const [formFields, setFormFields] = useState(null);
+	const [formData, setFormData] = useState(null);
 	const { setUser } = useContext(UserContext);
 	const history = useHistory();
 
@@ -19,9 +19,9 @@ export default function LandingPage() {
 	};
 
 	const handleChange = (value, fieldId) => {
-		const payload = { ...formFields };
+		const payload = { ...formData };
 		payload[fieldId] = value;
-		setFormFields(payload);
+		setFormData(payload);
 	};
 
 	const handleSubmit = async (e) => {
@@ -32,7 +32,7 @@ export default function LandingPage() {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(formFields),
+			body: JSON.stringify(formData),
 		};
 		const response = await fetch(url, payload);
 		if (!response.ok) {
