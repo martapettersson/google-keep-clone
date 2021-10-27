@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../utils/generateToken");
+const { validatePassword } = require("../utils/validation");
 const User = require("../models/UserModel");
 
 const salt = parseInt(process.env.SALT, 10);
@@ -11,7 +12,11 @@ exports.getUser = (req, res) => {
 };
 
 exports.signUpUser = async (req, res) => {
-  const { displayName, email, fullName, password } = req.body;
+  const { displayName, email, fullName, password, passwordConfirm } = req.body;
+
+  const { passwordError } = validatePassword(password, passwordConfirm);
+  if (passwordError)
+    return res.status(400).json({ success: false, passwordError });
 
   const userExists = await User.exists({ email });
   if (userExists)

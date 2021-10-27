@@ -33,6 +33,13 @@ export default function SignUpForm({ handleSubmit, handleChange }) {
 					type="password"
 					autoComplete="off"
 				/>
+				<label htmlFor="passwordConfirm">Confirm Password</label>
+				<input
+					onChange={(e) => handleChange(e.target.value, e.target.id)}
+					id="passwordConfirm"
+					type="password"
+					autoComplete="off"
+				/>
 				<input type="submit" className="btn" value="Sign Up" />
 			</form>
 		</div>
