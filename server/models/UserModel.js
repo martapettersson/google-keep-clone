@@ -9,7 +9,6 @@ const UserSchema = new Schema(
       type: String,
       required: [true, "A user must have a display name"],
       minlength: [1, "Display name must be at least 1 characters long"],
-      validate: [validator.isEmpty, "String can not be empty"],
     },
     email: {
       type: String,
@@ -23,14 +22,12 @@ const UserSchema = new Schema(
       type: String,
       required: [true, "A user must have a full name"],
       minlength: [1, "Full name must be at least 1 characters long"],
-      validate: [validator.isEmpty, "String can not be empty"],
     },
     password: {
       type: String,
       required: [true, "A user must have a password"],
       select: false,
       minlength: [8, "Password must be at least 8 characters long"],
-      validate: [validator.isEmpty, "String can not be empty"],
     },
   },
   { timestamps: true }
