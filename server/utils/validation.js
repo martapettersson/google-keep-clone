@@ -1,5 +1,5 @@
 exports.validatePassword = (password, passwordConfirm) => {
-  if (!password === passwordConfirm) {
+  if (password !== passwordConfirm) {
     return {
       passwordError: "Passwords do not match.",
     };
