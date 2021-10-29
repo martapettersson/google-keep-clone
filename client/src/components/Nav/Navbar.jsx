@@ -32,6 +32,9 @@ export default function Navbar() {
 			) : (
 				<>
 					<li>
+						<p>Welcome {user.displayName}!</p>
+					</li>
+					<li>
 						<Link to="/" onClick={handleLogout}>
 							Logout
 						</Link>

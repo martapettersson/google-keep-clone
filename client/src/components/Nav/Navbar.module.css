@@ -18,6 +18,16 @@
 	font-size: 18px;
 }
 
+.navbar li p {
+	display: block;
+	color: var(--lightpurple);
+	text-align: center;
+	padding: 14px 16px;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
 .navbar li a:hover {
 	color: var(--lightgrey);
 }
