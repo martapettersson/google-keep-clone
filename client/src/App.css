@@ -5,9 +5,11 @@
 :root {
 	--white: #fff;
 	--black: #000;
-	--lightgrey: #a4a4a4;
+	--lightgrey: #c6c6c6;
 	--darkgrey: #1d1d1b;
 	--purple: #4b01a0;
+	--success: #4bca81;
+	--error: #cc0000;
 }
 
 /************ GLOBAL STYLES ************/
@@ -53,14 +55,19 @@ h6 {
 	}
 }
 
-/* TABLET & DESKTOP */
+/* TABLET */
 
 @media (min-width: 500px) {
 	.notesContainer {
-		display: grid;
-		grid-column-gap: 24px;
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/*DESKTOP */
+
+@media (min-width: 1025px) {
+	.notesContainer {
 		grid-template-columns: repeat(3, 1fr);
-		margin: 24px;
 	}
 }
 
@@ -76,6 +83,8 @@ h6 {
 	color: var(--white);
 	display: inline-block;
 	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: bold;
 	text-align: center;
 	text-decoration: none;
 }
