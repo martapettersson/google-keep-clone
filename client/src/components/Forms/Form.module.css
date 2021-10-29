@@ -14,6 +14,7 @@
 	}
 	.form {
 		display: grid;
+		grid-row-gap: 6px;
 	}
 
 	.form input {
@@ -21,6 +22,14 @@
 		padding: 8px;
 		border: none;
 		width: 100%;
+	}
+}
+
+/* TABLET */
+
+@media (min-width: 500px) {
+	.formContainer {
+		width: 70vw;
 	}
 }
 
