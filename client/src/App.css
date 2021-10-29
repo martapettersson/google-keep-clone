@@ -16,6 +16,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	line-height: 1.5;
 }
 
 body,
@@ -25,27 +26,12 @@ html {
 	color: var(--lightgrey);
 }
 
-a {
-	color: var(--white);
-	text-decoration: none;
-	font-size: 18px;
-}
-
-a:hover {
-	color: var(--lightgrey);
-}
-
-h1 {
+h1,
+h2 {
 	text-align: center;
 }
 
 /************ CONTAINERS ************/
-.container {
-	margin: 24px;
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-column-gap: 24px;
-}
 
 .notes-container {
 	display: grid;

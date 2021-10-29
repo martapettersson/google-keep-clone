@@ -9,10 +9,6 @@
 	align-items: center;
 }
 
-.navbar li {
-	float: right;
-}
-
 .navbar li a {
 	display: block;
 	color: var(--white);

@@ -15,9 +15,6 @@
 	.form {
 		display: grid;
 	}
-	.formContainer h2 {
-		text-align: center;
-	}
 
 	.form input {
 		border-radius: 12px;
