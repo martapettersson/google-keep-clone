@@ -42,14 +42,18 @@ export default function Note({ note, notes, setNotes }) {
 
 	return (
 		<div className={styles.note}>
-			<strong>Last Updated: {lastUpdatedAt}</strong>
-			<MDEditor.Markdown source={note.sanitizedHtml} />
-			<Link className="btn" to={`/notes/${noteId}`}>
-				Edit
-			</Link>
-			<button className="btn btnDelete" onClick={deleteNote}>
-				Delete
-			</button>
+			<div className={styles.noteContent}>
+				<MDEditor.Markdown source={note.sanitizedHtml} />
+			</div>
+			<div className={styles.noteFooter}>
+				<Link className="btn" to={`/notes/${noteId}`}>
+					Edit
+				</Link>
+				<button className="btn btnDelete" onClick={deleteNote}>
+					Delete
+				</button>
+				<p className={styles.date}>Last Updated: {lastUpdatedAt}</p>{" "}
+			</div>
 		</div>
 	);
 }

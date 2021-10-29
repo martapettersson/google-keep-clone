@@ -27,7 +27,11 @@ html {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4,
+h5,
+h6 {
 	text-align: center;
 }
 
@@ -43,6 +47,7 @@ h2 {
 	.notesContainer {
 		display: grid;
 		grid-column-gap: 24px;
+		grid-row-gap: 24px;
 		grid-template-columns: 1fr;
 		margin-top: 24px;
 	}
@@ -70,7 +75,7 @@ h2 {
 	margin-right: 12px;
 	color: var(--white);
 	display: inline-block;
-	font-size: 16px;
+	font-size: 14px;
 	text-align: center;
 	text-decoration: none;
 }

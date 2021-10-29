@@ -40,7 +40,8 @@ export default function CreateNote({ notes, setNotes }) {
 
 	return (
 		<div className={styles.editorContainer}>
-			<h2>Create New Note</h2>
+			<h2>Create A Note</h2>
+			<h5>Using markdown</h5>
 			<div className={styles.editorForm}>
 				<MDEditor value={formData} onChange={setFormData} />
 				<form onSubmit={createNote} action="post">

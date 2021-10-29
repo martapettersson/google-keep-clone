@@ -1,8 +1,26 @@
 .note {
 	border: 0.5px solid var(--lightgrey);
 	border-radius: 12px;
-	padding: 24px;
-	margin-bottom: 24px;
+	padding: 18px;
 	color: var(--lightgrey);
 	height: fit-content;
+}
+
+.noteContent {
+	border: 0.5px solid var(--lightgrey);
+	border-radius: 12px;
+	padding: 18px;
+	color: var(--white);
+	overflow: hidden;
+	height: 200px;
+}
+
+.noteFooter {
+	color: var(--lightgrey);
+	height: fit-content;
+}
+
+.date {
+	margin-top: 8px;
+	font-size: 12px;
 }
