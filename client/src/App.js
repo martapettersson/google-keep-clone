@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import NotesPage from "./pages/NotesPage";
-import Navbar from "./components/Navbar";
+import Layout from "./components/Layout/Layout";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -42,18 +42,15 @@ function App() {
 	};
 
 	return (
-		<main>
-			<UserContext.Provider value={userContextValue}>
-				<Navbar />
-				<div className="container">
-					<Switch>
-						<Route path="/notes/:id" component={NotesPage} />
-						<Route path="/notes" component={NotesPage} />
-						<Route path="/" component={LandingPage} />
-					</Switch>
-				</div>
-			</UserContext.Provider>
-		</main>
+		<UserContext.Provider value={userContextValue}>
+			<Layout>
+				<Switch>
+					<Route path="/notes/:id" component={NotesPage} />
+					<Route path="/notes" component={NotesPage} />
+					<Route path="/" component={LandingPage} />
+				</Switch>
+			</Layout>
+		</UserContext.Provider>
 	);
 }
 
