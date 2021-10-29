@@ -1,22 +1,16 @@
-import React, { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
-import LoginForm from "../components/LoginForm";
-import SignUpForm from "../components/SignUpForm";
+import LoginForm from "../components/Forms/LoginForm";
+import SignUpForm from "../components/Forms/SignUpForm";
 
 export default function LandingPage() {
 	const [formType, setFormType] = useState("signup");
+	const location = useLocation();
 	const [formData, setFormData] = useState(null);
 	const { setUser } = useContext(UserContext);
 	const history = useHistory();
-
-	const setLogin = () => {
-		setFormType("login");
-	};
-	const setSignUp = () => {
-		setFormType("signup");
-	};
 
 	const handleChange = (value, fieldId) => {
 		const payload = { ...formData };
@@ -43,25 +37,27 @@ export default function LandingPage() {
 		setUser(responseData.user);
 		history.push(`/notes`);
 	};
+	useEffect(() => {
+		if (location.pathname === "/login") {
+			setFormType("login");
+		}
+		if (location.pathname === "/signup") {
+			setFormType("signup");
+		}
+	}, [location.pathname]);
 	return (
 		<div>
-			<h1>Welcome to Google Keep Clone!</h1>
+			<h1>Google Keep Clone</h1>
 			<br />
 			{formType === "login" ? (
 				<div>
 					<LoginForm handleSubmit={handleSubmit} handleChange={handleChange} />
 					<br />
-					<Link to="/" onClick={setSignUp}>
-						Not a member? Sign up here!
-					</Link>
 				</div>
 			) : (
 				<div>
 					<SignUpForm handleSubmit={handleSubmit} handleChange={handleChange} />
 					<br />
-					<Link to="/" onClick={setLogin}>
-						Already have an account? Login here!
-					</Link>
 				</div>
 			)}
 		</div>

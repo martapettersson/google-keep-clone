@@ -1,0 +1,35 @@
+/************ MENU STYLES ************/
+.navbar {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: var(--purple);
+	display: flex;
+	align-items: center;
+}
+
+.navbar li {
+	float: right;
+}
+
+.navbar li a {
+	display: block;
+	color: var(--white);
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+.navbar li a:hover {
+	color: var(--lightgrey);
+}
+
+.navbar li img {
+	width: 45px;
+}
+
+.navbar li img:hover {
+	opacity: 0.75;
+}

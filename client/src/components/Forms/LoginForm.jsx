@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./Form.module.css";
 
 export default function LoginForm({ handleSubmit, handleChange }) {
 	return (
-		<div>
+		<div className={styles.formContainer}>
 			<h2>Login</h2>
-			<form onSubmit={handleSubmit} className="form">
+			<form onSubmit={handleSubmit} className={styles.form}>
 				<label htmlFor="email">Email</label>
 				<input
 					onChange={(e) => handleChange(e.target.value, e.target.id)}

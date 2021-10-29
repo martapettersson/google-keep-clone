@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { Link, useHistory } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
 	const history = useHistory();
@@ -13,17 +14,23 @@ export default function Navbar() {
 	};
 
 	return (
-		<ul className="navbar">
+		<ul className={styles.navbar}>
 			<li>
 				<Link to={!user ? "/" : "/notes"}>
 					<img className="menu-logo" src="/logo.png" alt="Note Logo" />
 				</Link>
 			</li>
-			{user && (
+			{!user ? (
 				<>
 					<li>
-						<Link to="/notes">Notes</Link>
+						<Link to="/login">Login</Link>
 					</li>
+					<li>
+						<Link to="/signup">Sign Up</Link>
+					</li>
+				</>
+			) : (
+				<>
 					<li>
 						<Link to="/" onClick={handleLogout}>
 							Logout

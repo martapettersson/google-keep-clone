@@ -35,40 +35,8 @@ a:hover {
 	color: var(--lightgrey);
 }
 
-/************ MENU STYLES ************/
-.navbar {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: var(--purple);
-	display: flex;
-	align-items: center;
-}
-
-.navbar li {
-	float: left;
-}
-
-.navbar li a {
-	display: block;
-	color: var(--white);
+h1 {
 	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 18px;
-}
-
-.navbar li a:hover {
-	color: var(--lightgrey);
-}
-
-.menu-logo {
-	width: 45px;
-}
-
-.menu-logo:hover {
-	opacity: 0.75;
 }
 
 /************ CONTAINERS ************/
@@ -120,16 +88,4 @@ a:hover {
 }
 .btn:hover {
 	opacity: 0.5;
-}
-
-/************ FORM STYLES ************/
-.form {
-	display: grid;
-	border: 0.5px solid var(--lightgrey);
-	border-radius: 12px;
-	padding: 24px;
-	margin-bottom: 24px;
-	color: var(--lightgrey);
-	height: fit-content;
-	width: 33vw;
 }
