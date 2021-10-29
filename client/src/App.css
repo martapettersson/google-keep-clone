@@ -31,30 +31,32 @@ h2 {
 	text-align: center;
 }
 
-/************ CONTAINERS ************/
+/************ NOTESPAGE ************/
 
-.notes-container {
-	display: grid;
-	grid-column-gap: 24px;
-	grid-template-columns: repeat(2, 1fr);
+/* PHONE */
+
+@media (min-width: 200px) {
+	.notesPageContainer {
+		margin: 24px;
+	}
+
+	.notesContainer {
+		display: grid;
+		grid-column-gap: 24px;
+		grid-template-columns: 1fr;
+		margin-top: 24px;
+	}
 }
 
-.note-container {
-	border: 0.5px solid var(--lightgrey);
-	border-radius: 12px;
-	padding: 24px;
-	margin-bottom: 24px;
-	color: var(--lightgrey);
-	height: fit-content;
-}
+/* TABLET & DESKTOP */
 
-.md-editor {
-	border: 0.5px solid var(--lightgrey);
-	border-radius: 12px;
-	padding: 24px;
-	margin-bottom: 24px;
-	color: var(--lightgrey);
-	height: fit-content;
+@media (min-width: 500px) {
+	.notesContainer {
+		display: grid;
+		grid-column-gap: 24px;
+		grid-template-columns: repeat(3, 1fr);
+		margin: 24px;
+	}
 }
 
 /************ BUTTON STYLES ************/
@@ -74,4 +76,11 @@ h2 {
 }
 .btn:hover {
 	opacity: 0.5;
+}
+
+.btn.btnDelete {
+	padding: 9.5px;
+	background-color: var(--darkgrey);
+	color: var(--white);
+	border: 0.5px solid var(--white);
 }

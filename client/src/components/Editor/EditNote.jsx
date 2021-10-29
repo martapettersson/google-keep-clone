@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
+import styles from "./Editor.module.css";
 
 export default function EditNote({ id, note, notes, setNotes }) {
 	const [formData, setFormData] = useState(note.markdown);
@@ -43,16 +44,18 @@ export default function EditNote({ id, note, notes, setNotes }) {
 	};
 
 	return (
-		<div className="md-editor">
-			<h2 className="header">Edit Note</h2>
-			<MDEditor value={formData} onChange={setFormData} />
-			<form onSubmit={updateNote} action="post">
-				<input type="hidden" name="markdown" id="markdown" value={formData} />
-				<input className="btn" type="submit" value="Update" />
-				<Link to="/notes" className="btn">
-					Cancel
-				</Link>
-			</form>
+		<div className={styles.editorContainer}>
+			<h2>Edit Note</h2>
+			<div className={styles.editorForm}>
+				<MDEditor value={formData} onChange={setFormData} />
+				<form onSubmit={updateNote} action="post">
+					<input type="hidden" name="markdown" id="markdown" value={formData} />
+					<input className="btn" type="submit" value="Update" />
+					<Link to="/notes" className={styles.cancelBtn}>
+						Cancel
+					</Link>
+				</form>
+			</div>
 		</div>
 	);
 }

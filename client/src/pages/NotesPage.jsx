@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import Note from "../components/Note";
-import CreateNote from "../components/CreateNote";
-import EditNote from "../components/EditNote";
+import Note from "../components/Note/Note";
+import CreateNote from "../components/Editor/CreateNote";
+import EditNote from "../components/Editor/EditNote";
 import { UserContext } from "../context/UserContext";
 
 export default function NotesPage(props) {
@@ -36,36 +35,30 @@ export default function NotesPage(props) {
 	}, [user]);
 
 	if (!user) {
-		return (
-			<span>
-				You have to login or sign up to view this page:
-				<Link to="/"> Let's go!</Link>
-			</span>
-		);
-	} else if (props.match.params.id && notes) {
+		return <span>You have to login or sign up to view this page.</span>;
+	}
+	// Edit single note
+	else if (props.match.params.id && notes) {
 		const id = props.match.params.id;
 		const note = notes.find((note) => note._id === id);
-		if (note) {
-			return (
-				<div>
-					<EditNote id={id} note={note} notes={notes} setNotes={setNotes} />
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<h1>Page Not Found!</h1>
-					<Link to={`/notes`}>Back To Notes</Link>
-				</div>
-			);
-		}
-	} else {
 		return (
-			<>
+			<div className="notesPageContainer">
+				{note ? (
+					<EditNote id={id} note={note} notes={notes} setNotes={setNotes} />
+				) : (
+					<h1>Page Not Found!</h1>
+				)}
+			</div>
+		);
+	}
+	// Create new and view all notes
+	else {
+		return (
+			<div className="notesPageContainer">
 				<CreateNote notes={notes} setNotes={setNotes} />
-				{notes ? (
-					<div className="notes-container">
-						{notes.map((note) => {
+				<div className="notesContainer">
+					{notes ? (
+						notes.map((note) => {
 							return (
 								<Note
 									key={note._id}
@@ -74,12 +67,12 @@ export default function NotesPage(props) {
 									setNotes={setNotes}
 								/>
 							);
-						})}
-					</div>
-				) : (
-					<p>No notes created yet!</p>
-				)}
-			</>
+						})
+					) : (
+						<p>No notes created yet!</p>
+					)}
+				</div>
+			</div>
 		);
 	}
 }

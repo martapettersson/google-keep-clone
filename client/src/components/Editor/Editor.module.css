@@ -1,0 +1,53 @@
+/************ MARKDOWN EDITOR STYLES ************/
+
+/* PHONE */
+
+@media (min-width: 200px) {
+	.editorContainer {
+		border: 0.5px solid var(--lightgrey);
+		border-radius: 12px;
+		padding: 24px;
+		color: var(--darkgrey);
+		height: fit-content;
+		width: 90vw;
+		margin: 0 auto;
+		background-color: var(--white);
+	}
+	.editorForm {
+		margin-top: 12px;
+		height: 100%;
+	}
+
+	.editorContainer input {
+		border-radius: 12px;
+		padding: 8px;
+		border: none;
+		width: 100%;
+	}
+	.cancelBtn {
+		background-color: var(--darkgrey);
+		border-radius: 12px;
+		border: none;
+		outline: none;
+		margin-top: 12px;
+		margin-right: 12px;
+		color: var(--white);
+		display: inline-block;
+		font-size: 16px;
+		text-align: center;
+		text-decoration: none;
+		padding: 8px;
+		width: 100%;
+	}
+	.cancelBtn:hover {
+		opacity: 0.5;
+	}
+}
+
+/* DESKTOP */
+
+@media (min-width: 900px) {
+	.editorContainer {
+		width: 50vw;
+	}
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
+import styles from "./Editor.module.css";
 
 export default function CreateNote({ notes, setNotes }) {
 	const [formData, setFormData] = useState("");
@@ -38,13 +39,15 @@ export default function CreateNote({ notes, setNotes }) {
 	};
 
 	return (
-		<div className="md-editor">
-			<h2 className="header">Create New Note</h2>
-			<MDEditor value={formData} onChange={setFormData} />
-			<form onSubmit={createNote} action="post">
-				<input type="hidden" name="markdown" id="markdown" value={formData} />
-				<input className="btn" type="submit" value="Create" />
-			</form>
+		<div className={styles.editorContainer}>
+			<h2>Create New Note</h2>
+			<div className={styles.editorForm}>
+				<MDEditor value={formData} onChange={setFormData} />
+				<form onSubmit={createNote} action="post">
+					<input type="hidden" name="markdown" id="markdown" value={formData} />
+					<input className="btn" type="submit" value="Create" />
+				</form>
+			</div>
 		</div>
 	);
 }

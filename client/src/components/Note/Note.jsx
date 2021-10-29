@@ -1,6 +1,7 @@
 import React from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { Link } from "react-router-dom";
+import styles from "./Note.module.css";
 
 export default function Note({ note, notes, setNotes }) {
 	const noteId = note._id;
@@ -40,15 +41,15 @@ export default function Note({ note, notes, setNotes }) {
 	};
 
 	return (
-		<div className="note-container">
+		<div className={styles.note}>
 			<strong>Last Updated: {lastUpdatedAt}</strong>
 			<MDEditor.Markdown source={note.sanitizedHtml} />
-			<button className="btn" onClick={deleteNote}>
-				Delete
-			</button>
 			<Link className="btn" to={`/notes/${noteId}`}>
 				Edit
 			</Link>
+			<button className="btn btnDelete" onClick={deleteNote}>
+				Delete
+			</button>
 		</div>
 	);
 }
