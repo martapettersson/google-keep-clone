@@ -13,7 +13,13 @@ exports.getUser = (req, res) => {
 
 exports.signUpUser = async (req, res) => {
   const { displayName, email, fullName, password, passwordConfirm } = req.body;
-
+  if (!displayName || !email || !fullName || !password || !passwordConfirm) {
+    return res.status(400).json({
+      success: false,
+      error:
+        "You have to provide a display name, email, full name, and password",
+    });
+  }
   const { passwordError } = validatePassword(password, passwordConfirm);
   if (passwordError)
     return res.status(400).json({ success: false, passwordError });
@@ -47,6 +53,13 @@ exports.signUpUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+
+  if (email || !password) {
+    return res.status(400).json({
+      success: false,
+      error: "You have to provide an email and password",
+    });
+  }
   try {
     const user = await User.findOne({ email }).exec();
     if (!user) {
