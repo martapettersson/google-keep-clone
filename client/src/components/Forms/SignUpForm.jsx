@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Form.module.css";
 
-export default function SignUpForm({ handleSubmit, handleChange }) {
+export default function SignUpForm({ handleSubmit, handleChange, error }) {
 	return (
 		<div className={styles.formContainer}>
 			<h2>Sign Up</h2>
@@ -43,6 +43,11 @@ export default function SignUpForm({ handleSubmit, handleChange }) {
 				/>
 				<input type="submit" className="btn" value="Sign Up" />
 			</form>
+			{error && (
+				<div className={styles.errorBox}>
+					<p>{error}</p>
+				</div>
+			)}
 		</div>
 	);
 }
