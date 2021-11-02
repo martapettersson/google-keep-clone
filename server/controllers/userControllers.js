@@ -22,7 +22,7 @@ exports.signUpUser = async (req, res) => {
   }
   const { passwordError } = validatePassword(password, passwordConfirm);
   if (passwordError)
-    return res.status(400).json({ success: false, passwordError });
+    return res.status(400).json({ success: false, error: passwordError });
 
   const userExists = await User.exists({ email });
   if (userExists)
