@@ -19,17 +19,22 @@ export default function NotesPage(props) {
 		};
 
 		const response = await fetch(url, payload);
-		if (!response.ok) {
-			throw new Error("Something went wrong!");
-		}
 		const responseData = await response.json();
+
+		if (!response.ok) {
+			if (response.status === 404) {
+				setNotes(null);
+			} else {
+				throw new Error(responseData.error);
+			}
+		}
 		setNotes(responseData.data);
 	};
 
 	useEffect(() => {
 		if (user) {
 			fetchNotes().catch((error) => {
-				console.log(error);
+				console.warn(error);
 			});
 		}
 	}, [user]);

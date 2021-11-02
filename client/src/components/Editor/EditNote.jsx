@@ -33,10 +33,11 @@ export default function EditNote({ id, note, notes, setNotes }) {
 			body: JSON.stringify({ markdown: formData }),
 		};
 		const response = await fetch(url, payload);
-		if (!response.ok) {
-			throw new Error("Something went wrong!");
-		}
 		const responseData = await response.json();
+		if (!response.ok) {
+			throw new Error(responseData.error);
+		}
+
 		const newNotes = notes.filter((note) => note._id !== noteId);
 		newNotes.push(responseData.data);
 		setNotes(newNotes);
