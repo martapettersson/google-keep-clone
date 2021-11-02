@@ -35,6 +35,12 @@ export default function Navbar() {
 						<p>Welcome {user.displayName}!</p>
 					</li>
 					<li>
+						<Link to="/notes">Your Notes</Link>
+					</li>
+					<li>
+						<Link to="/tips">How to use markdown</Link>
+					</li>
+					<li>
 						<Link to="/" onClick={handleLogout}>
 							Logout
 						</Link>

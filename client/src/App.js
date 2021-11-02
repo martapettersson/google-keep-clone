@@ -22,17 +22,16 @@ function App() {
 				};
 
 				const response = await fetch(url, payload);
+				const responseData = await response.json();
 
 				if (!response.ok) {
-					throw new Error("Something went wrong!");
+					throw new Error(responseData.error);
 				}
-
-				const responseData = await response.json();
 				setUser(responseData.data);
 			}
 		};
 		fetchUser().catch((error) => {
-			console.log(error);
+			console.warn(error);
 		});
 	}, []);
 
@@ -47,6 +46,23 @@ function App() {
 				<Switch>
 					<Route path="/notes/:id" component={NotesPage} />
 					<Route path="/notes" component={NotesPage} />
+					<Route
+						path="/tips"
+						component={() => {
+							window.open(
+								"https://www.markdownguide.org/basic-syntax/",
+								"_blank"
+							);
+
+							// window.location.href =
+							// 	"https://www.markdownguide.org/basic-syntax/";
+							return (
+								<div>
+									<h2>Tips opened in new tab</h2>
+								</div>
+							);
+						}}
+					/>
 					<Route path="/" component={LandingPage} />
 				</Switch>
 			</Layout>
