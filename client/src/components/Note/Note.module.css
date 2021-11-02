@@ -11,8 +11,9 @@
 	border-radius: 12px;
 	padding: 18px;
 	color: var(--white);
-	overflow: hidden;
 	height: 200px;
+	resize: both;
+	overflow: hidden;
 }
 
 .noteFooter {
