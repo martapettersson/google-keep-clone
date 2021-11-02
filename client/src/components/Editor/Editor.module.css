@@ -44,9 +44,17 @@
 	}
 }
 
+/* TABLET */
+
+@media (min-width: 500px) {
+	.editorContainer {
+		width: 80vw;
+	}
+}
+
 /* DESKTOP */
 
-@media (min-width: 900px) {
+@media (min-width: 1025px) {
 	.editorContainer {
 		width: 50vw;
 	}
