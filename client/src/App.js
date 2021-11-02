@@ -53,9 +53,6 @@ function App() {
 								"https://www.markdownguide.org/basic-syntax/",
 								"_blank"
 							);
-
-							// window.location.href =
-							// 	"https://www.markdownguide.org/basic-syntax/";
 							return (
 								<div>
 									<h2>Tips opened in new tab</h2>
