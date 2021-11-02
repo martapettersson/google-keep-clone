@@ -54,7 +54,7 @@ exports.signUpUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  if (email || !password) {
+  if (!email || !password) {
     return res.status(400).json({
       success: false,
       error: "You have to provide an email and password",
