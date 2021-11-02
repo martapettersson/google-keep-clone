@@ -38,7 +38,7 @@ export default function Navbar() {
 						<Link to="/notes">Your Notes</Link>
 					</li>
 					<li>
-						<Link to="/tips">How to use markdown</Link>
+						<Link to="/tips">Markdown Guide</Link>
 					</li>
 					<li>
 						<Link to="/" onClick={handleLogout}>
