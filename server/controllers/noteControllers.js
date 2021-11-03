@@ -14,9 +14,8 @@ exports.addNote = async (req, res) => {
   const newNote = new NoteModel(note);
   try {
     await newNote.save();
-    return res.status(200).json({
+    return res.status(201).json({
       success: true,
-      statusMessage: "New note added succesfully!",
       data: newNote,
     });
   } catch (err) {
@@ -28,9 +27,7 @@ exports.getAllNotes = async (req, res) => {
   try {
     const notes = await NoteModel.find({ userId: req.user.id });
     if (notes.length === 0 || !notes) {
-      return res
-        .status(404)
-        .json({ success: false, error: "Notes Not Found!" });
+      return res.status(200).json({ success: true, data: null });
     }
     return res.status(200).json({ success: true, data: notes });
   } catch (err) {
@@ -76,7 +73,6 @@ exports.updateNote = async (req, res) => {
     }
     return res.status(200).json({
       success: true,
-      statusMessage: "Note updated succesfully!",
       data: updatedNote,
     });
   } catch (err) {
@@ -93,9 +89,7 @@ exports.deleteNote = async (req, res) => {
     if (!note) {
       return res.status(404).json({ success: false, error: "Note Not Found!" });
     }
-    return res
-      .status(200)
-      .json({ success: true, statusMessage: "Note deleted succesfully!" });
+    return res.status(200).json({ success: true });
   } catch (err) {
     return res.status(400).json({ success: false, error: err });
   }
