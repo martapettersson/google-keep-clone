@@ -1,7 +1,10 @@
 const express = require("express");
-require("dotenv").config();
-const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config();
+
 const notesRouter = require("./routes/noteRoutes");
 const usersRouter = require("./routes/userRoutes");
 
@@ -18,7 +21,11 @@ app.use(
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
+
+app.use(logger("dev"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
