@@ -30,10 +30,10 @@ export default function CreateNote({ notes, setNotes }) {
 			body: JSON.stringify({ markdown: formData }),
 		};
 		const response = await fetch(url, payload);
-		if (!response.ok) {
-			throw new Error("Something went wrong!");
-		}
 		const responseData = await response.json();
+
+		if (!response.ok) throw new Error(responseData.error);
+
 		setNotes(!notes ? [responseData.data] : [...notes, responseData.data]);
 		setFormData("");
 	};

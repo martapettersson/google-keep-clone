@@ -24,9 +24,8 @@ function App() {
 				const response = await fetch(url, payload);
 				const responseData = await response.json();
 
-				if (!response.ok) {
-					throw new Error(responseData.error);
-				}
+				if (!response.ok) throw new Error(responseData.error);
+
 				setUser(responseData.data);
 			}
 		};

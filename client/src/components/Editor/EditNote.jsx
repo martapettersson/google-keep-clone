@@ -34,9 +34,8 @@ export default function EditNote({ id, note, notes, setNotes }) {
 		};
 		const response = await fetch(url, payload);
 		const responseData = await response.json();
-		if (!response.ok) {
-			throw new Error(responseData.error);
-		}
+
+		if (!response.ok) throw new Error(responseData.error);
 
 		const newNotes = notes.filter((note) => note._id !== noteId);
 		newNotes.push(responseData.data);

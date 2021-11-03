@@ -21,13 +21,8 @@ export default function NotesPage(props) {
 		const response = await fetch(url, payload);
 		const responseData = await response.json();
 
-		if (!response.ok) {
-			if (response.status === 404) {
-				setNotes(null);
-			} else {
-				throw new Error(responseData.error);
-			}
-		}
+		if (!response.ok) throw new Error(responseData.error);
+
 		setNotes(responseData.data);
 	};
 

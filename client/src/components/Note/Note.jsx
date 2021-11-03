@@ -33,9 +33,9 @@ export default function Note({ note, notes, setNotes }) {
 			},
 		};
 		const response = await fetch(url, payload);
-		if (!response.ok) {
-			throw new Error("Something went wrong!");
-		}
+		const responseData = await response.json();
+		if (!response.ok) throw new Error(responseData.error);
+
 		const newNotes = notes.filter((note) => note._id !== noteId);
 		setNotes(newNotes);
 	};
