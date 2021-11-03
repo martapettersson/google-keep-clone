@@ -22,7 +22,7 @@ export default function Note({ note, notes, setNotes }) {
 	const lastUpdatedAt = getDate(note.updatedAt);
 
 	const deleteNote = async () => {
-		const url = `${process.env.REACT_APP_BASE_URL}api/notes/${noteId}/`;
+		const url = `${process.env.REACT_APP_BASE_URL}/api/notes/${noteId}/`;
 		const token = localStorage.getItem("tkn");
 
 		const payload = {
