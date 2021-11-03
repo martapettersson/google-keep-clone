@@ -24,7 +24,7 @@ export default function LandingPage() {
 		e.preventDefault();
 		const validateMessage = formValidation(formData, formType);
 		if (validateMessage === "valid") {
-			const url = `/api/users/${formType}`;
+			const url = `${process.env.REACT_APP_BASE_URL}/api/users/${formType}`;
 			const payload = {
 				method: "POST",
 				headers: {

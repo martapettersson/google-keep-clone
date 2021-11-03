@@ -13,7 +13,7 @@ function App() {
 		const fetchUser = async () => {
 			if (localStorage.getItem("tkn")) {
 				const token = localStorage.getItem("tkn");
-				const url = "/api/users/getMe";
+				const url = `${process.env.REACT_APP_BASE_URL}/api/users/getMe`;
 				const payload = {
 					headers: {
 						"Content-Type": "application/json",

@@ -21,7 +21,7 @@ export default function EditNote({ id, note, notes, setNotes }) {
 		if (!validateForm()) {
 			return alert("Please enter new data in form or cancel.");
 		}
-		const url = `/api/notes/${noteId}`;
+		const url = `${process.env.REACT_APP_BASE_URL}/api/notes/${noteId}`;
 		const token = localStorage.getItem("tkn");
 
 		const payload = {

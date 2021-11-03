@@ -9,7 +9,7 @@ export default function NotesPage(props) {
 	const { user } = useContext(UserContext);
 
 	const fetchNotes = async () => {
-		const url = "/api/notes";
+		const url = `${process.env.REACT_APP_BASE_URL}/api/notes`;
 		const token = localStorage.getItem("tkn");
 		const payload = {
 			headers: {

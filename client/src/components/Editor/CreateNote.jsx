@@ -18,7 +18,7 @@ export default function CreateNote({ notes, setNotes }) {
 		if (!validateForm()) {
 			return alert("Please enter data in form.");
 		}
-		const url = "/api/notes/";
+		const url = `${process.env.REACT_APP_BASE_URL}/api/notes`;
 		const token = localStorage.getItem("tkn");
 
 		const payload = {
