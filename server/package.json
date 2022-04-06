@@ -22,7 +22,7 @@
     "express": "^4.17.1",
     "jsdom": "^17.0.0",
     "jsonwebtoken": "^8.5.1",
-    "marked": "^3.0.6",
+    "marked": ">=4.0.10",
     "mongoose": "^6.0.8",
     "morgan": "^1.10.0",
     "validator": "^13.6.0"
